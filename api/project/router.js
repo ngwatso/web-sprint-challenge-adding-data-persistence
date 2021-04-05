@@ -17,13 +17,8 @@ projectRouter.get('/', async (req, res, next) => {
 projectRouter.post('/', async (req, res, next) => {
 	const project = req.body;
 
-	if (!project.project_name || !project.project_completed) {
-		next(
-			new ExpressError(
-				'new projects must contain a name and completion data',
-				404
-			)
-		);
+	if (!project.project_name) {
+		next(new ExpressError('new projects must contain a name', 404));
 	} else {
 		try {
 			const newProject = await Projects.addProject(project);

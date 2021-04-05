@@ -17,10 +17,10 @@ taskRouter.get('/', async (req, res, next) => {
 taskRouter.post('/', async (req, res, next) => {
 	const task = req.body;
 
-	if (!task.project_id || !task.task_description || !task.task_completed) {
+	if (!task.project_id || !task.task_description) {
 		next(
 			new ExpressError(
-				'new tasks must contain description, completion data and project ID',
+				'new tasks must contain description and project ID',
 				404
 			)
 		);
